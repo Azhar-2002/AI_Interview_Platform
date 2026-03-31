@@ -40,21 +40,29 @@ app.get("/api/test", (req,res)=>{
 io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
-    socket.on("join-room", (sessionId) => {
+  socket.on("join-room", (sessionId) => {
     socket.join(sessionId);
   });
 
-  io.on("connection", (socket) => {
-  console.log("User connected:", socket.id);
-  });
-
-   socket.on("code-change", ({ sessionId, code }) => {
+  socket.on("code-change", ({ sessionId, code }) => {
     socket.to(sessionId).emit("code-update", code);
   });
-   socket.on("disconnect", () => {
+
+  socket.on("disconnect", () => {
     console.log("User disconnected");
   });
 });
-server.listen(PORT, "0.0.0.0",() => {
-  console.log(`Server running on port ${PORT}`);
-});
+const startServer = async () => {
+  try {
+    await connectDB(); // wait for DB
+
+    server.listen(PORT, "0.0.0.0", () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+
+  } catch (error) {
+    console.error("Server failed to start ❌", error);
+  }
+};
+
+startServer();
