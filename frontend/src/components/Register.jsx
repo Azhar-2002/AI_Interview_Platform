@@ -8,7 +8,7 @@ function Register({ goToLogin }) {
 
   const handleRegister = async () => {
     try {
-      await axios.post("http://localhost:5000/api/auth/register", {
+      await axios.post("https://ai-interview-platform-coeo.onrender.com/api/auth/register", {
         name,
         email,
         password

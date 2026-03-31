@@ -15,7 +15,7 @@ function App() {
   const runCode = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/code/run",
+        "https://ai-interview-platform-coeo.onrender.com/api/code/run",
         { code, language: "javascript" },
         {
           headers: {
