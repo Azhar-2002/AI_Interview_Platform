@@ -11,7 +11,7 @@ import cors from 'cors';
 
 
 dotenv.config();
-
+const PORT = process.env.PORT || 5000;
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server,{
@@ -55,6 +55,6 @@ io.on("connection", (socket) => {
     console.log("User disconnected");
   });
 });
-server.listen(5000, () => {
-  console.log("Server running on port 5000");
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
