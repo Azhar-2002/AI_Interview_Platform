@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { Analytics } from "@vercel/analytics/react";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import CodeEditor from "./components/CodeEditor";
@@ -89,6 +90,7 @@ if (!token) {
       </div>
 
     </div>
+    <Analytics />
   </div>
 );
 }
