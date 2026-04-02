@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { Analytics } from "@vercel/analytics/react";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import CodeEditor from "./components/CodeEditor";
@@ -34,9 +35,19 @@ function App() {
   // 👇 if not logged in
 if (!token) {
   if (page === "login") {
-    return <Login setToken={setToken} goToRegister={() => setPage("register")} />;
+    return (
+      <>
+        <Login setToken={setToken} goToRegister={() => setPage("register")} />
+        <Analytics />
+      </>
+    );
   } else {
-    return <Register goToLogin={() => setPage("login")} />;
+    return (
+      <>
+        <Register goToLogin={() => setPage("login")} />
+        <Analytics />
+      </>
+    );
   }
 }
 
@@ -89,6 +100,7 @@ if (!token) {
       </div>
 
     </div>
+    <Analytics />
   </div>
 );
 }
